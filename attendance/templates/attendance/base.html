@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="{% url 'attendance:index' %}">Brand Name</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'attendance:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'attendance:mark_attendance' pk=user.teacher.pk %}">Attendance</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'attendance:login_user' %}">Attendance</a>
+            {% endif %}
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'attendance:school_list' %}">Schools</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'attendance:about' %}">About</a>
+        </li>
+        </ul>
+          <ul class="nav navbar-right navbar-nav">
+              {% if user.is_authenticated %}
+                    <li><a href="{% url 'attendance:profile' pk=user.teacher.pk %}" class="nav-link"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                    <li><a href="{% url 'attendance:logout_user' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
+              {% else %}
+                    <li><a href="{% url 'attendance:register' %}" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+                    <li><a href="{% url 'attendance:login_user' %}" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a></li>
+              {% endif %}
+          </ul>
+      </div>
+    </nav>
+
+{% block body %}
+{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

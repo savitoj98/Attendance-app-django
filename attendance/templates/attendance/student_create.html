@@ -1,0 +1,10 @@
+{% extends 'attendance/base.html' %}
+{% block title %}{{ teacher.teacher_name }}: Add Students{% endblock %}
+{% block body %}
+    <h1>Add Student Details:</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{form.as_p}}
+    <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

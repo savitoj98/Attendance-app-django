@@ -1,0 +1,29 @@
+{% extends 'attendance/base.html' %}
+{% block title %}{{ teacher.teacher_name }} | Attendance{% endblock %}
+{% block body %}
+    <h1>Update Student Attendance:</h1>
+    <form method="POST" class="post-form">
+        {{ formset.management_form }}
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Roll No</td>
+                <td>Name</td>
+                <td>Mark Attendance</td>
+            </tr>
+            {% for student,form in list %}
+                <tr>
+                    <td>{{ student.roll_no }}</td>
+                    <td>{{ student.student_name }}</td>
+                    <td>
+                        {% for radio in form %}
+                            {{ radio }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+{% endblock %}
