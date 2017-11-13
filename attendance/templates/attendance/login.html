@@ -1,6 +1,11 @@
 {% extends 'attendance/base.html' %}
 {% block title %}Login{% endblock %}
 {% block body %}
+    <style>
+        input{
+            cursor: pointer;
+        }
+    </style>
     <div class="container">
     <h1>Log In:</h1>
     {% if error_message %}

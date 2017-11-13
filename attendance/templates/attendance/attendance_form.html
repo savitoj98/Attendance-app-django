@@ -1,21 +1,31 @@
 {% extends 'attendance/base.html' %}
 {% block title %}{{ teacher.teacher_name }} | Attendance{% endblock %}
 {% block body %}
-    <h1>Update Student Attendance:</h1>
+    <style>
+        .align li{
+            list-style: none;
+            float: left;
+            margin-right: 20px;
+        }
+
+    </style>
+    <div class="container">
+        <center><h1>Update Student Attendance:</h1></center>
+    <p></p>
     <form method="POST" class="post-form">
         {{ formset.management_form }}
         {% csrf_token %}
-        <table>
+        <table class="table table-bordered table-hover ">
             <tr>
-                <td>Roll No</td>
-                <td>Name</td>
-                <td>Mark Attendance</td>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Mark Attendance</th>
             </tr>
             {% for student,form in list %}
                 <tr>
                     <td>{{ student.roll_no }}</td>
                     <td>{{ student.student_name }}</td>
-                    <td>
+                    <td class="align">
                         {% for radio in form %}
                             {{ radio }}
                         {% endfor %}
@@ -23,7 +33,7 @@
                 </tr>
             {% endfor %}
         </table>
-    <button type="submit" class="save btn btn-default">Save</button>
+    <button type="submit" class="save btn btn-default" style="cursor: pointer">Save</button>
     </form>
-
+    </div>
 {% endblock %}

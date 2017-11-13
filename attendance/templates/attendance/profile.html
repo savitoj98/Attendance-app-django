@@ -14,10 +14,10 @@
     </style>
     <div class="container">
         <h2>{{ teacher.teacher_name }}</h2>
-{#        <a href="{% url 'attendance:profile_update' pk=teacher.id %}" class="btn btn-primary">Update Your Profile</a>#}
         <h4>{{ teacher.teacher_school }}</h4>
         <h4>{{ teacher.teacher_class }} - {{ teacher.teacher_section }}</h4>
         <p></p>
+
         <h3>Students under {{ teacher.teacher_name }}:</h3>
         <ol>
             {% for student in students %}

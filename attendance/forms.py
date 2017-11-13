@@ -52,14 +52,20 @@ class TeacherForm(forms.ModelForm):
     class Meta:
         model = Teacher
         fields = ['teacher_name', 'teacher_school', 'teacher_class', 'teacher_section']
-
+    def __init__(self, *args, **kwargs):
+        super(TeacherForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
         fields = ['student_name', 'roll_no']
-
+    def __init__(self, *args, **kwargs):
+        super(StudentForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 class AttendanceForm(forms.Form):
     mark_attendance = forms.ChoiceField(widget=forms.RadioSelect, choices=class_attendance)

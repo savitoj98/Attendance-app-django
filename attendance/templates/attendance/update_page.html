@@ -1,7 +1,9 @@
 {% extends 'attendance/base.html' %}
 {% block title %}Profile Update{% endblock %}
 {% block body %}
-    <h2>Welcome to Loop Education Foundation</h2>
-    <h5>Please Update Your Profile to continue:</h5>
-    <a href="{% url 'attendance:profile_update' pk=teacher.id %}" class="btn btn-primary">Update</a>
+    <div class="container">
+        <h2>Welcome to Loop Education Foundation</h2>
+        <h5>Please Update Your Profile to continue:</h5>
+        <a href="{% url 'attendance:profile_update' pk=teacher.id %}" class="btn btn-primary">Update</a>
+    </div>
 {% endblock %}
