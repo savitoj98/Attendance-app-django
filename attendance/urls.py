@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^student/(?P<pk>[0-9]+)/$', views.StudentDetailView.as_view(), name='student_detail'),
     url(r'^teacher/(?P<pk>[0-9]+)/create_student/$', views.create_student, name='student_create'),
     url(r'^teacher/(?P<pk>[0-9]+)/attendance/$', views.mark_attendance, name='mark_attendance'),
-
+    url(r'^principal/(?P<pk>[0-9]+)/$', views.SchoolDetailView.as_view(), name='school_detail'),
 ]

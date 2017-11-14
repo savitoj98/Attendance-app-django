@@ -30,7 +30,8 @@ class School(models.Model):
     id = models.AutoField(primary_key=True)
     school_name = models.CharField(max_length=500)
     timestamp = models.DateTimeField(auto_now_add=True)
-    principal = models.CharField(max_length=500)
+    principal_name = models.CharField(max_length=500)
+    principal = models.ForeignKey(User)
 
     def __str__(self):
         return self.school_name
@@ -50,8 +51,8 @@ class Teacher(models.Model):
     def get_absolute_url(self):
         return reverse("attendance:profile", kwargs={'pk':self.pk})
 
-    #def __str__(self):
-     #   return self.teacher_name
+    def __str__(self):
+        return self.teacher_name
 
 class Student(models.Model):
     student_name = models.CharField(max_length=200)
@@ -61,10 +62,9 @@ class Student(models.Model):
     absent = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.student_name + '-'  + self.student_teacher.teacher_name
+        return self.student_name
 
-
-    def get_absolute_url(self):
-        return reverse("attendance:profile", kwargs={'pk':self.student_teacher.id})
+    # def get_absolute_url(self):
+    #     return reverse("attendance:profile", kwargs={'pk':self.student_teacher.id})
 
 # class Principal(models.Model):

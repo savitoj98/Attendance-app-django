@@ -1,11 +1,7 @@
 {% extends 'attendance/base.html' %}
 {% block title %}Register{% endblock %}
 {% block body %}
-    <style>
-        input{
-            cursor: pointer;
-        }
-    </style>
+
     <div class="container">
         <h2>Register here:</h2>
         <form method="POST">
@@ -19,7 +15,7 @@
                     </div>
                 </fieldset>
             {% endfor %}
-            <input type="submit" value="Submit" class="btn-primary btn">
+            <input type="submit" value="Submit" class="btn-primary btn" style="cursor: pointer">
         </form>
     </div>
 {% endblock %}
