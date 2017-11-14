@@ -61,7 +61,7 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = ['student_name', 'roll_no']
+        fields = ['student_name', 'roll_no', 'student_gender']
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():

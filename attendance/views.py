@@ -131,6 +131,7 @@ class StudentDetailView(LoginRequiredMixin,DetailView):
         if test_queryset:
             return Student.objects.filter(student_teacher=test_queryset)
 
+
 class SchoolDetailView(LoginRequiredMixin, DetailView):
     template_name = 'attendance/school_detail.html'
     model = School

@@ -26,6 +26,11 @@ class_attendance = (
     ('Absent','Absent'),
 )
 
+gender = (
+    ('Male','Male'),
+    ('Female','Female'),
+)
+
 class School(models.Model):
     id = models.AutoField(primary_key=True)
     school_name = models.CharField(max_length=500)
@@ -58,6 +63,7 @@ class Student(models.Model):
     student_name = models.CharField(max_length=200)
     roll_no = models.CharField(max_length=100)
     student_teacher = models.ForeignKey(Teacher)
+    student_gender = models.CharField(choices=gender, max_length=50)
     present = models.IntegerField(default=0)
     absent = models.IntegerField(default=0)
 
