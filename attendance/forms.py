@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Teacher,Student
+from loop_attendance import settings
+
 
 
 class_attendance = (

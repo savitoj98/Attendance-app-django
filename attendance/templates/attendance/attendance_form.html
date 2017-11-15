@@ -11,10 +11,16 @@
     </style>
     <div class="container">
         <center><h1>Update Student Attendance:</h1></center>
-    <p></p>
+    <p></p><br>
+    {% if error %}
+        <p><strong>{{ error }}</strong></p>
+    {% endif %}
+
+
     <form method="POST" class="post-form">
         {{ formset.management_form }}
         {% csrf_token %}
+    <br>
         <table class="table table-bordered table-hover ">
             <tr>
                 <th>Roll No</th>

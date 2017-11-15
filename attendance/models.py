@@ -73,4 +73,9 @@ class Student(models.Model):
     # def get_absolute_url(self):
     #     return reverse("attendance:profile", kwargs={'pk':self.student_teacher.id})
 
-# class Principal(models.Model):
+class Attendance(models.Model):
+    student = models.ForeignKey(Student)
+    teacher = models.ForeignKey(Teacher)
+    date = models.DateField()
+    mark_attendance = models.CharField(max_length=50, choices=class_attendance)
+
