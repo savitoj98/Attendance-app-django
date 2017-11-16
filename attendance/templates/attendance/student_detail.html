@@ -1,0 +1,27 @@
+{% extends 'attendance/base.html' %}
+{% block title %}Student: {{ student.student_name }}{% endblock %}
+{% block body %}
+    <style>
+        h2,h4 {
+            text-align: center;
+        }
+
+    </style>
+<div class="container">
+
+    <h2>{{ student.student_name }}</h2>
+    <h4>Roll no: {{ student.roll_no }}</h4>
+    <h4>Gender: {{ student.student_gender }}</h4>
+    <h4>Class: {{ student.student_teacher.teacher_class }}-{{ student.student_teacher.teacher_section }}</h4>
+    <p></p>
+    <h3>{{ student.student_name }}'s Attendance: </h3>
+    <p>Present: {{ student.present }}</p>
+    <p>Absent: {{ student.absent }}</p>
+    <p id="sum">Total: </p>
+</div>
+<script>
+    var total = {{ student.present }} + {{ student.absent }};
+    var x = document.querySelector('#sum');
+    x.innerHTML += total;
+</script>
+{% endblock %}

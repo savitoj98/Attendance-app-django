@@ -1,0 +1,13 @@
+{% extends 'attendance/base.html' %}
+{% block title %}Welcome {{ school.principal_name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>List of Teachers:</h1>
+        <ol>
+            {% for teacher in teachers %}
+                <li><a href="{% url 'attendance:profile' pk=teacher.id %}">{{ teacher.teacher_name }}</a> : {{ teacher.teacher_class }}-{{ teacher.teacher_section }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

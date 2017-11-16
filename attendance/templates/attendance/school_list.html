@@ -1,0 +1,13 @@
+{% extends 'attendance/base.html' %}
+{% block title %}Schools{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>School List</h1>
+        <ol>
+            {% for school in school_list %}
+                <li>{{ school.school_name }}</li>
+              {% endfor %}
+        </ol>
+    </div>
+{% endblock %}
