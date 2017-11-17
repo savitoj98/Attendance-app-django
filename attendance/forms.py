@@ -15,7 +15,7 @@ class_attendance = (
 class UserForm(forms.ModelForm):
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
-    email = forms.EmailField(label='Email')
+    #email = forms.EmailField(label='Email')
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -24,12 +24,12 @@ class UserForm(forms.ModelForm):
             raise ValidationError("Username already exists")
         return username
 
-    def clean_email(self):
-        email = self.cleaned_data['email'].lower()
-        r = User.objects.filter(email=email)
-        if r.count():
-            raise ValidationError("Email already exists")
-        return email
+    # def clean_email(self):
+    #     email = self.cleaned_data['email'].lower()
+    #     r = User.objects.filter(email=email)
+    #     if r.count():
+    #         raise ValidationError("Email already exists")
+    #     return email
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
@@ -42,7 +42,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username','email','password1', 'password2']
+        fields = ['username','password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)

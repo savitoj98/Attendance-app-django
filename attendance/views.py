@@ -22,12 +22,12 @@ def register(request):
     if form.is_valid():
         user = form.save(commit=False)
         username = form.cleaned_data['username']
-        email = form.cleaned_data['email']
+        # email = form.cleaned_data['email']
         password1 = form.cleaned_data['password1']
         user.set_password(password1)
         user.save()
         Teacher.objects.create(user=user)
-        user = authenticate(username=username,email=email, password=password1)
+        user = authenticate(username=username, password=password1)
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -172,7 +172,7 @@ def mark_attendance(request,pk):
     students = Student.objects.filter(student_teacher=teacher)
     count = students.count()
     attendance_formset = formset_factory(AttendanceForm, extra=count)
-
+    date = datetime.today().date().strftime('%d-%m-%Y')
 
 
     if not request.user.is_authenticated():
@@ -215,6 +215,7 @@ def mark_attendance(request,pk):
                     'students': students,
                     'teacher': teacher,
                     'list': list,
+                    'date':date,
                 }
                 return render(request, 'attendance/attendance_form.html', context)
 
@@ -225,6 +226,7 @@ def mark_attendance(request,pk):
                 'students': students,
                 'teacher': teacher,
                 'list': list,
+                'date':date,
             }
 
             return render(request, 'attendance/attendance_form.html', context)

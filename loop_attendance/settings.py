@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'loopedu',
         'USER': 'root',
         'PASSWORD': 'savi',
-       
+        
     }
 }
 
