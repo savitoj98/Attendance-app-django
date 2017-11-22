@@ -9,6 +9,7 @@
         }
 
     </style>
+    
     <div class="container">
         <center><h1>Update Student Attendance:</h1></center>
         <center><h3>{{ date }}</h3></center>
@@ -43,4 +44,7 @@
     <button type="submit" class="save btn btn-default" style="cursor: pointer">Save</button>
     </form>
     </div>
+    <script>
+            $("input[value=Present]").prop('checked',true);
+    </script>
 {% endblock %}

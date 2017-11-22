@@ -9,5 +9,6 @@
                 <li><a href="{% url 'attendance:profile' pk=teacher.id %}">{{ teacher.teacher_name }}</a> : {{ teacher.teacher_class }}-{{ teacher.teacher_section }}</li>
             {% endfor %}
         </ol>
+        <a href="{% url 'attendance:attendance_report' pk=school.pk %}" class="btn btn-success">Daily Report</a>
     </div>
 {% endblock %}

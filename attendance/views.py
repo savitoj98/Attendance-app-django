@@ -143,6 +143,38 @@ class SchoolDetailView(LoginRequiredMixin, DetailView):
         context['teachers'] = Teacher.objects.filter(teacher_school=context['school'])
         return context
 
+
+@login_required
+def attendance_report(request, pk):
+    school = School.objects.filter(pk=pk)
+    if not request.user.is_authenticated():
+        return redirect('attendance:login_user')
+    elif school[0].principal == request.user:
+        teachers = Teacher.objects.filter(teacher_school__in=school)
+        date = datetime.today().date()
+        attendance = Attendance.objects.filter(date=datetime.today()).filter(teacher__in=teachers)
+        students=Student.objects.filter(student_teacher__in=teachers)
+        studentMen = students.filter(student_gender='Male')
+        studentFemale = students.filter(student_gender='Female')
+        boys = attendance.filter(student__in=studentMen)
+        girls = attendance.filter(student__in=studentFemale)
+        p_boys = boys.filter(mark_attendance='Present')
+        p_girls = girls.filter(mark_attendance='Present')
+        a_boys = boys.filter(mark_attendance='Absent')
+        a_girls = girls.filter(mark_attendance='Absent')
+        context = {
+            'date':date,
+            'attendance':attendance,          
+            'p_boys':p_boys,
+            'a_boys':a_boys,
+            'p_girls':p_girls,
+            'a_girls':a_girls,
+        }
+        return render(request,'attendance/principal_report.html',context)
+    else:
+        return redirect('attendance:school_detail', pk=pk)
+
+
 @login_required
 def create_student(request, pk):
     teacher = get_object_or_404(Teacher, pk=pk)

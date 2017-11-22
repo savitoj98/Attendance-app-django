@@ -1,0 +1,54 @@
+{% extends 'attendance/base.html' %}
+{% block title %}Attendance Report{% endblock %}
+
+{% block body %}
+    <style>
+        h1{
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <h1>Overview Report for {{ date }}</h1>
+        <br>       
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th></th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td><strong>Boys</strong></td>
+                <td>{{ p_boys|length }}</td>
+                <td>{{ a_boys|length }}</td>
+                <td id='sum_boys'></td>
+            </tr>
+            <tr>
+                <td><strong>Girls</strong></td>
+                <td>{{ p_girls|length }}</td>
+                <td>{{ a_girls|length }}</td>
+                <td id='sum_girls'></td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td id='sum_present'></td>
+                <td id='sum_absent'></td>
+                <td id='total'></td>
+            </tr>
+        </table>    
+
+
+    </div>
+
+    <script>
+        var sum_boys = {{ p_boys|length }} + {{ a_boys|length }};
+        var sum_girls = {{ p_girls|length }} + {{ a_girls|length }};
+        var sum_present = {{ p_boys|length }} + {{ p_girls|length }};
+        var sum_absent = {{ a_boys|length }} + {{ a_girls|length }};
+        document.querySelector('#sum_boys').innerHTML += sum_boys;
+        document.querySelector('#sum_girls').innerHTML += sum_girls;
+        document.querySelector('#sum_present').innerHTML += sum_present;
+        document.querySelector('#sum_absent').innerHTML += sum_absent;
+        document.querySelector('#total').innerHTML += sum_present + sum_absent;
+    </script>
+{% endblock %}
