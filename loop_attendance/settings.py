@@ -25,7 +25,7 @@ SECRET_KEY = '((3g7o#2&)veqogaszj+4jfp1!bn9x@76i_tc8*8&)$!*49o@m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'loopedu',
-        'USER': 'root',
-        'PASSWORD': 'savi',
+        'USER': 'loopedu',
++       'PASSWORD': 'fVcXhgQYEgjR0K3ubHLV',
         
     }
 }
