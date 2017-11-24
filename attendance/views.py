@@ -146,6 +146,7 @@ class SchoolDetailView(LoginRequiredMixin, DetailView):
 
 @login_required
 def attendance_report(request, pk):
+
     school = School.objects.filter(pk=pk)
     if not request.user.is_authenticated():
         return redirect('attendance:login_user')
@@ -154,6 +155,8 @@ def attendance_report(request, pk):
         date = datetime.today().date()
         attendance = Attendance.objects.filter(date=datetime.today()).filter(teacher__in=teachers)
         students=Student.objects.filter(student_teacher__in=teachers)
+        
+        #For overview report
         studentMen = students.filter(student_gender='Male')
         studentFemale = students.filter(student_gender='Female')
         boys = attendance.filter(student__in=studentMen)
@@ -162,13 +165,38 @@ def attendance_report(request, pk):
         p_girls = girls.filter(mark_attendance='Present')
         a_boys = boys.filter(mark_attendance='Absent')
         a_girls = girls.filter(mark_attendance='Absent')
+
+        #For detailed report
+        boys_present = []
+        girls_present = []
+        boys_absent = []
+        girls_absent = []
+        total_present = []
+        total_absent = []
+        for teacher in teachers:
+            st = students.filter(student_teacher=teacher)
+            stMen = st.filter(student_gender='Male')
+            stFemale = st.filter(student_gender='Female')
+            boy = attendance.filter(student__in=stMen)
+            girl = attendance.filter(student__in=stFemale)
+            boys_present.append(boy.filter(mark_attendance='Present').count())
+            girls_present.append(girl.filter(mark_attendance='Present').count())
+            boys_absent.append(boy.filter(mark_attendance='Absent').count())
+            girls_absent.append(girl.filter(mark_attendance='Absent').count())
+            total_present.append(boy.filter(mark_attendance='Present').count() + girl.filter(mark_attendance='Present').count())
+            total_absent.append(boy.filter(mark_attendance='Absent').count() + girl.filter(mark_attendance='Absent').count())
+        report_data = zip(teachers,boys_present,boys_absent,girls_present,girls_absent,total_present,total_absent)
+        
         context = {
             'date':date,
+            'school':school,
+            'teachers':teachers,
             'attendance':attendance,          
             'p_boys':p_boys,
             'a_boys':a_boys,
             'p_girls':p_girls,
             'a_girls':a_girls,
+            'report_data':report_data,
         }
         return render(request,'attendance/principal_report.html',context)
     else:

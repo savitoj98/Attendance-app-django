@@ -25,7 +25,7 @@
             {% if user.is_authenticated and user.teacher.pk %}
                 <a class="nav-link" href="{% url 'attendance:mark_attendance' pk=user.teacher.pk %}">Attendance</a>
             {% else %}
-                <a class="nav-link" href="{% url 'attendance:login_user' %}">Attendance</a>
+                
             {% endif %}
           </li>
         <li class="nav-item">

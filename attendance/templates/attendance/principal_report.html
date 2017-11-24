@@ -3,44 +3,114 @@
 
 {% block body %}
     <style>
-        h1{
+        h1, h2, h4{
             text-align: center;
         }
+        .btn {
+            cursor: pointer;
+        }
+        .col-sm {
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid lightgrey;
+        }
+        .hide{
+            display: none;
+        }
+        .select {
+            background-color: lightgrey;
+        }
+        th, td{
+            text-align: center;
+        } 
+        
+                
     </style>
     <div class="container">
-        <h1>Overview Report for {{ date }}</h1>
-        <br>       
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th></th>
-                <th>Present</th>
-                <th>Absent</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td><strong>Boys</strong></td>
-                <td>{{ p_boys|length }}</td>
-                <td>{{ a_boys|length }}</td>
-                <td id='sum_boys'></td>
-            </tr>
-            <tr>
-                <td><strong>Girls</strong></td>
-                <td>{{ p_girls|length }}</td>
-                <td>{{ a_girls|length }}</td>
-                <td id='sum_girls'></td>
-            </tr>
-            <tr>
-                <td><strong>Total</strong></td>
-                <td id='sum_present'></td>
-                <td id='sum_absent'></td>
-                <td id='total'></td>
-            </tr>
+        
+        <h1>Attendance Report for {{ date }}</h1><br>
+        <div class="row">
+            <div class="col-sm select" id="opt-1">Overview Report
+            </div>
+            <div class="col-sm" id="opt-2">Detailed Report
+            </div>
+        </div>
+        <br>
+        <div id="report-1">
+            <h2>Overview Report</h2>
+            <h4>{{ date }}</h4>
+            <br>       
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th></th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td><strong>Boys</strong></td>
+                    <td>{{ p_boys|length }}</td>
+                    <td>{{ a_boys|length }}</td>
+                    <td id='sum_boys'></td>
+                </tr>
+                <tr>
+                    <td><strong>Girls</strong></td>
+                    <td>{{ p_girls|length }}</td>
+                    <td>{{ a_girls|length }}</td>
+                    <td id='sum_girls'></td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td id='sum_present'></td>
+                    <td id='sum_absent'></td>
+                    <td id='total'></td>
+                </tr>
         </table>    
+        
+        </div>
+        <div class="hide" id="report-2">
+            <h2>Detailed Report</h2>
+            <h4>{{ date }}</h4>
+            <br>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th><strong>Class</strong></th>
+                    <th colspan="2"><strong>Boys</strong></th>
+                    <th colspan="2"><strong>Girls</strong></th>
+                    <th colspan="2"><strong>Total</strong></th>
+                </tr>  
+                <tr>
+                    <td></td>
+                    <td><strong>Present</strong></td>
+                    <td><strong>Absent</strong></td>
+                    <td><strong>Present</strong></td>
+                    <td><strong>Absent</strong></td>
+                    <td><strong>Present</strong></td>
+                    <td><strong>Absent</strong></td>
+                </tr> 
+                
+                {% for teacher,b_p,b_a,g_p,g_a,t_p,t_a in report_data %}
+                    <tr>
+                        <td>{{ teacher.teacher_class }} - {{ teacher.teacher_section }}</td>
+                        <td>{{ b_p }}</td>
+                        <td>{{ b_a }}</td>
+                        <td>{{ g_p }}</td>
+                        <td>{{ g_a }}</td>
+                        <td>{{ t_p }}</td>
+                        <td>{{ t_a }}</td>
+                    </tr>
+                {% endfor %}
+                
+            </table>
+            <a href="" class="btn btn-primary">Download Detailed Report</a>
+        </div>
+        <br><br>
 
 
     </div>
 
     <script>
+        
         var sum_boys = {{ p_boys|length }} + {{ a_boys|length }};
         var sum_girls = {{ p_girls|length }} + {{ a_girls|length }};
         var sum_present = {{ p_boys|length }} + {{ p_girls|length }};
@@ -50,5 +120,19 @@
         document.querySelector('#sum_present').innerHTML += sum_present;
         document.querySelector('#sum_absent').innerHTML += sum_absent;
         document.querySelector('#total').innerHTML += sum_present + sum_absent;
+        document.getElementById('opt-1').addEventListener("click",function(){
+            document.getElementById('opt-2').classList.remove('select');
+            document.getElementById('opt-1').classList.add('select');
+            document.getElementById('report-2').classList.add('hide');
+            document.getElementById('report-1').classList.remove('hide');
+            
+        });
+        document.getElementById('opt-2').addEventListener("click",function(){
+            document.getElementById('opt-1').classList.remove('select');
+            document.getElementById('opt-2').classList.add('select');
+            document.getElementById('report-1').classList.add('hide');
+            document.getElementById('report-2').classList.remove('hide');
+            
+        });
     </script>
 {% endblock %}
