@@ -1,3 +1,4 @@
+import csv
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import Teacher, Student, School, Attendance
@@ -8,6 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.formsets import formset_factory
 from django.utils.timezone import datetime
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -141,8 +144,42 @@ class SchoolDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(SchoolDetailView, self).get_context_data(**kwargs)
         context['teachers'] = Teacher.objects.filter(teacher_school=context['school'])
+        context['attendance']= Attendance.objects.filter(date=datetime.today()).filter(teacher__in=context['teachers'])
+        context['students']=Student.objects.filter(student_teacher__in=context['teachers'])
         return context
 
+
+@login_required
+def export_to_csv(request, pk):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="report-{}.csv"'.format(datetime.today().date())
+    writer = csv.writer(response)
+    writer.writerow(['Class', 'Section', 'Boys(Present)', 'Boys(Absent)', 'Girls(Present)', 'Girls(Absent)', 'Total(Present)', 'Total(Absent)' ])
+
+    #Data For Report
+    school = School.objects.filter(pk=pk)
+    teachers = Teacher.objects.filter(teacher_school__in=school)
+    attendance = Attendance.objects.filter(date=datetime.today()).filter(teacher__in=teachers)
+    students=Student.objects.filter(student_teacher__in=teachers)
+    
+    #Data Writing
+    for teacher in teachers:
+        row = []
+        st = students.filter(student_teacher=teacher)
+        stMen = st.filter(student_gender='Male')
+        stFemale = st.filter(student_gender='Female')
+        boy = attendance.filter(student__in=stMen)
+        girl = attendance.filter(student__in=stFemale)
+        row.append(teacher.teacher_class)
+        row.append(teacher.teacher_section)
+        row.append(boy.filter(mark_attendance='Present').count())
+        row.append(boy.filter(mark_attendance='Absent').count())
+        row.append(girl.filter(mark_attendance='Present').count())
+        row.append(girl.filter(mark_attendance='Absent').count())
+        row.append(boy.filter(mark_attendance='Present').count() + girl.filter(mark_attendance='Present').count())
+        row.append(boy.filter(mark_attendance='Absent').count() + girl.filter(mark_attendance='Absent').count())
+        writer.writerow(row)
+    return response
 
 @login_required
 def attendance_report(request, pk):
@@ -173,8 +210,10 @@ def attendance_report(request, pk):
         girls_absent = []
         total_present = []
         total_absent = []
+        student_data = []
         for teacher in teachers:
             st = students.filter(student_teacher=teacher)
+            student_data.append(st)
             stMen = st.filter(student_gender='Male')
             stFemale = st.filter(student_gender='Female')
             boy = attendance.filter(student__in=stMen)
@@ -185,7 +224,7 @@ def attendance_report(request, pk):
             girls_absent.append(girl.filter(mark_attendance='Absent').count())
             total_present.append(boy.filter(mark_attendance='Present').count() + girl.filter(mark_attendance='Present').count())
             total_absent.append(boy.filter(mark_attendance='Absent').count() + girl.filter(mark_attendance='Absent').count())
-        report_data = zip(teachers,boys_present,boys_absent,girls_present,girls_absent,total_present,total_absent)
+        report_data = zip(teachers,boys_present,boys_absent,girls_present,girls_absent,total_present,total_absent,student_data)
         
         context = {
             'date':date,

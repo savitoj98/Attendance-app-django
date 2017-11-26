@@ -24,8 +24,10 @@
           <li class="nav-item">
             {% if user.is_authenticated and user.teacher.pk %}
                 <a class="nav-link" href="{% url 'attendance:mark_attendance' pk=user.teacher.pk %}">Attendance</a>
+            {% elif user.is_authenticated %}
+                <a class="nav-link" href="{% url 'attendance:attendance_report' pk=user.school.pk %}">Report</a>
             {% else %}
-                
+                <a class="nav-link" href="{% url 'attendance:login_user' %}">Attendance</a>
             {% endif %}
           </li>
         <li class="nav-item">
@@ -40,6 +42,7 @@
                     <li><a href="{% url 'attendance:profile' pk=user.teacher.pk %}" class="nav-link"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
                     <li><a href="{% url 'attendance:logout_user' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
               {% elif user.is_authenticated %}
+                    <li><a href="{% url 'attendance:school_detail' pk=user.school.pk %}" class="nav-link"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
                     <li><a href="{% url 'attendance:logout_user' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
               {% else %}
                     <li><a href="{% url 'attendance:register' %}" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>

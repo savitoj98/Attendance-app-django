@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^teacher/(?P<pk>[0-9]+)/attendance/$', views.mark_attendance, name='mark_attendance'),
     url(r'^principal/(?P<pk>[0-9]+)/$', views.SchoolDetailView.as_view(), name='school_detail'),
     url(r'^report/(?P<pk>[0-9]+)/attendance/$', views.attendance_report, name='attendance_report'),
+    url(r'^report/(?P<pk>[0-9]+)/attendance/download/$', views.export_to_csv, name='export_to_csv'),
 ]

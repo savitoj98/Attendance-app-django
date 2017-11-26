@@ -1,11 +1,20 @@
 {% extends 'attendance/base.html' %}
 {% block title %}Loop{% endblock %}
 {% block body %}
-
-    {% if user.is_authenticated %}
-        <h3>Welcome: {{ user.username }}</h3>
-     {% else %}
-        <h1>Main Page</h1>
-    {% endif %}
-
+<style>
+	.container {
+		text-align: center;
+	}
+</style>
+	<div class="container">
+		<div class="jumbotron">
+	    {% if user.is_authenticated %}
+	        <h1>Welcome: {{ user.username }}</h1>
+	     {% else %}
+	            <h1>Loop Education Foundation</h1>
+	    {% endif %}
+	    <br>
+	    <a class="btn btn-primary" style="cursor: pointer;" href="http://loopeducation.org">Visit the Website</a>
+		</div>
+	</div>
 {% endblock %}

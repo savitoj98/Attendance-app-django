@@ -2,6 +2,7 @@
 {% block title %}Attendance Report{% endblock %}
 
 {% block body %}
+{% load filters %}
     <style>
         h1, h2, h4{
             text-align: center;
@@ -23,7 +24,11 @@
         th, td{
             text-align: center;
         } 
-        
+        .show td, .show th {
+            /*display: none;*/
+            background-color: lightgrey;
+        }
+
                 
     </style>
     <div class="container">
@@ -89,9 +94,13 @@
                     <td><strong>Absent</strong></td>
                 </tr> 
                 
-                {% for teacher,b_p,b_a,g_p,g_a,t_p,t_a in report_data %}
+                {% for teacher,b_p,b_a,g_p,g_a,t_p,t_a,st in report_data %}
                     <tr>
-                        <td>{{ teacher.teacher_class }} - {{ teacher.teacher_section }}</td>
+                        <td  data-toggle="collapse" data-target=".{{ teacher.pk }}">
+                            <span class="btn"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
+                                {{ teacher.teacher_class }} - {{ teacher.teacher_section }}
+                            </span>
+                        </td>
                         <td>{{ b_p }}</td>
                         <td>{{ b_a }}</td>
                         <td>{{ g_p }}</td>
@@ -99,10 +108,26 @@
                         <td>{{ t_p }}</td>
                         <td>{{ t_a }}</td>
                     </tr>
+                    
+                        <tr class='collapse {{ teacher.pk}}'>
+                            <th colspan="1">Roll Number</th>
+                            <th colspan="3">Student Name</th>
+                            <th colspan="3">Status</th>
+                        </tr>
+                        {% for student in st %}
+                            <tr class="collapse {{ teacher.pk }}">
+                                <td>{{ student.roll_no }}</td>
+                                <td colspan='3'>{{ student.student_name }}</td>
+                                <td colspan='3'>{{ attendance|find_attendance:student }}</td>
+                            </tr>
+                        {% endfor %}
+                
                 {% endfor %}
                 
             </table>
-            <a href="" class="btn btn-primary">Download Detailed Report</a>
+            
+            <a href="{% url 'attendance:export_to_csv' pk=school.0.pk %}" class="btn btn-primary">Download Detailed Report</a>
+            
         </div>
         <br><br>
 
@@ -110,7 +135,7 @@
     </div>
 
     <script>
-        
+        // Overview Report
         var sum_boys = {{ p_boys|length }} + {{ a_boys|length }};
         var sum_girls = {{ p_girls|length }} + {{ a_girls|length }};
         var sum_present = {{ p_boys|length }} + {{ p_girls|length }};
@@ -120,6 +145,9 @@
         document.querySelector('#sum_present').innerHTML += sum_present;
         document.querySelector('#sum_absent').innerHTML += sum_absent;
         document.querySelector('#total').innerHTML += sum_present + sum_absent;
+
+
+        // Detailed Report
         document.getElementById('opt-1').addEventListener("click",function(){
             document.getElementById('opt-2').classList.remove('select');
             document.getElementById('opt-1').classList.add('select');
@@ -134,5 +162,11 @@
             document.getElementById('report-2').classList.remove('hide');
             
         });
+
+
+        //Detailed Report Students
+        
+
+
     </script>
 {% endblock %}

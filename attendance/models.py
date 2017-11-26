@@ -37,7 +37,7 @@ class School(models.Model):
     school_name = models.CharField(max_length=500)
     timestamp = models.DateTimeField(auto_now_add=True)
     principal_name = models.CharField(max_length=500)
-    principal = models.ForeignKey(User)
+    principal = models.OneToOneField(User)
 
     def __str__(self):
         return self.school_name
