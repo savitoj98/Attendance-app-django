@@ -190,7 +190,7 @@ def attendance_report(request, pk):
     elif school[0].principal == request.user:
         teachers = Teacher.objects.filter(teacher_school__in=school)
         date = datetime.today().date()
-        attendance = Attendance.objects.filter(date=datetime.today()).filter(teacher__in=teachers)
+        attendance = Attendance.objects.filter(date=datetime.today(),teacher__in=teachers)
         students=Student.objects.filter(student_teacher__in=teachers)
         
         #For overview report
@@ -224,6 +224,7 @@ def attendance_report(request, pk):
             girls_absent.append(girl.filter(mark_attendance='Absent').count())
             total_present.append(boy.filter(mark_attendance='Present').count() + girl.filter(mark_attendance='Present').count())
             total_absent.append(boy.filter(mark_attendance='Absent').count() + girl.filter(mark_attendance='Absent').count())
+        
         report_data = zip(teachers,boys_present,boys_absent,girls_present,girls_absent,total_present,total_absent,student_data)
         
         context = {
@@ -287,18 +288,32 @@ def mark_attendance(request,pk):
                     date = datetime.today()
                     mark = form.cleaned_data['mark_attendance']
                     print(mark)
+                    check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student)
+                    print(check_attendance)
+     
+                    if check_attendance:
+                        attendance = Attendance.objects.get(teacher=teacher,date=date,student=student)
+                        if attendance.mark_attendance == 'Absent':
+                            student.absent = student.absent - 1
+                        elif attendance.mark_attendance == 'Present':
+                            student.present = student.present - 1
+                        attendance.mark_attendance = mark
+                        attendance.save()
+
+                    else: 
+                        attendance = Attendance()
+                        attendance.teacher = teacher
+                        attendance.student = student
+                        attendance.date = date
+                        attendance.mark_attendance = mark
+                        attendance.save()
+
                     if mark == 'Absent':
                         student.absent = student.absent + 1
                     if mark == 'Present':
                         student.present = student.present + 1
                     student.save()
 
-                    attendance = Attendance()
-                    attendance.teacher = teacher
-                    attendance.student = student
-                    attendance.date = date
-                    attendance.mark_attendance = mark
-                    attendance.save()
 
                 context = {
                     'students': students,

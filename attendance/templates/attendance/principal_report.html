@@ -21,118 +21,146 @@
         .select {
             background-color: lightgrey;
         }
-        th, td{
+        th, td, .container{
             text-align: center;
         } 
-        .show td, .show th {
-            /*display: none;*/
-            background-color: lightgrey;
+        .card-header {
+            text-align: center;
         }
-
                 
     </style>
     <div class="container">
         
-        <h1>Attendance Report for {{ date }}</h1><br>
-        <div class="row">
-            <div class="col-sm select" id="opt-1">Overview Report
+        <h1>Attendance Report</h1><br>
+
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Overview Report
+                </a>
+              </h5>
             </div>
-            <div class="col-sm" id="opt-2">Detailed Report
+
+            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <br>
+                  <div id="report-1">
+                      <h2>Overview Report</h2>
+                      <h4>{{ date }}</h4>
+                      <br>       
+                      <table class="table table-bordered table-hover">
+                          <tr>
+                              <th></th>
+                              <th>Present</th>
+                              <th>Absent</th>
+                              <th>Total</th>
+                          </tr>
+                          <tr>
+                              <td><strong>Boys</strong></td>
+                              <td>{{ p_boys|length }}</td>
+                              <td>{{ a_boys|length }}</td>
+                              <td id='sum_boys'></td>
+                          </tr>
+                          <tr>
+                              <td><strong>Girls</strong></td>
+                              <td>{{ p_girls|length }}</td>
+                              <td>{{ a_girls|length }}</td>
+                              <td id='sum_girls'></td>
+                          </tr>
+                          <tr>
+                              <td><strong>Total</strong></td>
+                              <td id='sum_present'></td>
+                              <td id='sum_absent'></td>
+                              <td id='total'></td>
+                          </tr>
+                  </table>    
+                  
+                  </div>
+              </div>
             </div>
-        </div>
-        <br>
-        <div id="report-1">
-            <h2>Overview Report</h2>
-            <h4>{{ date }}</h4>
-            <br>       
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th></th>
-                    <th>Present</th>
-                    <th>Absent</th>
-                    <th>Total</th>
-                </tr>
-                <tr>
-                    <td><strong>Boys</strong></td>
-                    <td>{{ p_boys|length }}</td>
-                    <td>{{ a_boys|length }}</td>
-                    <td id='sum_boys'></td>
-                </tr>
-                <tr>
-                    <td><strong>Girls</strong></td>
-                    <td>{{ p_girls|length }}</td>
-                    <td>{{ a_girls|length }}</td>
-                    <td id='sum_girls'></td>
-                </tr>
-                <tr>
-                    <td><strong>Total</strong></td>
-                    <td id='sum_present'></td>
-                    <td id='sum_absent'></td>
-                    <td id='total'></td>
-                </tr>
-        </table>    
-        
-        </div>
-        <div class="hide" id="report-2">
-            <h2>Detailed Report</h2>
-            <h4>{{ date }}</h4>
-            <br>
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th><strong>Class</strong></th>
-                    <th colspan="2"><strong>Boys</strong></th>
-                    <th colspan="2"><strong>Girls</strong></th>
-                    <th colspan="2"><strong>Total</strong></th>
-                </tr>  
-                <tr>
-                    <td></td>
-                    <td><strong>Present</strong></td>
-                    <td><strong>Absent</strong></td>
-                    <td><strong>Present</strong></td>
-                    <td><strong>Absent</strong></td>
-                    <td><strong>Present</strong></td>
-                    <td><strong>Absent</strong></td>
-                </tr> 
-                
-                {% for teacher,b_p,b_a,g_p,g_a,t_p,t_a,st in report_data %}
-                    <tr>
-                        <td  data-toggle="collapse" data-target=".{{ teacher.pk }}">
-                            <span class="btn"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
-                                {{ teacher.teacher_class }} - {{ teacher.teacher_section }}
-                            </span>
-                        </td>
-                        <td>{{ b_p }}</td>
-                        <td>{{ b_a }}</td>
-                        <td>{{ g_p }}</td>
-                        <td>{{ g_a }}</td>
-                        <td>{{ t_p }}</td>
-                        <td>{{ t_a }}</td>
-                    </tr>
-                    
-                        <tr class='collapse {{ teacher.pk}}'>
-                            <th colspan="1">Roll Number</th>
-                            <th colspan="3">Student Name</th>
-                            <th colspan="3">Status</th>
-                        </tr>
-                        {% for student in st %}
-                            <tr class="collapse {{ teacher.pk }}">
-                                <td>{{ student.roll_no }}</td>
-                                <td colspan='3'>{{ student.student_name }}</td>
-                                <td colspan='3'>{{ attendance|find_attendance:student }}</td>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  Detailed Report
+                </a>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                  <br><br>
+                <div id="report-2">
+                    <h2>Detailed Report</h2>
+                    <h4>{{ date }}</h4>
+                    <br>
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th><strong>Class</strong></th>
+                            <th colspan="2"><strong>Boys</strong></th>
+                            <th colspan="2"><strong>Girls</strong></th>
+                            <th colspan="2"><strong>Total</strong></th>
+                        </tr>  
+                        <tr>
+                            <td></td>
+                            <td><strong>Present</strong></td>
+                            <td><strong>Absent</strong></td>
+                            <td><strong>Present</strong></td>
+                            <td><strong>Absent</strong></td>
+                            <td><strong>Present</strong></td>
+                            <td><strong>Absent</strong></td>
+                        </tr> 
+                        
+                        {% for teacher,b_p,b_a,g_p,g_a,t_p,t_a,st in report_data %}
+                            <tr>
+                                
+                                <td>
+                                    
+                                    <a data-toggle="collapse" href=".{{ teacher.pk }}">
+                                        <span class="btn"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
+                                            {{ teacher.teacher_class }} - {{ teacher.teacher_section }}
+                                        </span>
+                                    </a>
+                                    
+                                </td>
+                                
+                                <td>{{ b_p }}</td>
+                                <td>{{ b_a }}</td>
+                                <td>{{ g_p }}</td>
+                                <td>{{ g_a }}</td>
+                                <td>{{ t_p }}</td>
+                                <td>{{ t_a }}</td>
                             </tr>
+                            
+                                <tr class="collapse {{ teacher.pk }}">
+                                    <th colspan="1">Roll Number</th>
+                                    <th colspan="3">Student Name</th>
+                                    <th colspan="3">Status</th>
+                                </tr>
+                                {% for student in st %}
+                                    <tr class="collapse {{ teacher.pk }}">
+                                        <td>{{ student.roll_no }}</td>
+                                        <td colspan='3'>{{ student.student_name }}</td>
+                                        <td colspan='3'>{{ attendance|find_attendance:student }}</td>
+                                </tr>
+                                {% endfor %}
+                            
                         {% endfor %}
-                
-                {% endfor %}
-                
-            </table>
-            
-            <a href="{% url 'attendance:export_to_csv' pk=school.0.pk %}" class="btn btn-primary">Download Detailed Report</a>
-            
+                        
+                    </table>
+                    
+                    <a href="{% url 'attendance:export_to_csv' pk=school.0.pk %}" class="btn btn-primary">Download Detailed Report</a>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <br><br>
 
 
-    </div>
+       </div>
 
     <script>
         // Overview Report
@@ -146,27 +174,6 @@
         document.querySelector('#sum_absent').innerHTML += sum_absent;
         document.querySelector('#total').innerHTML += sum_present + sum_absent;
 
-
-        // Detailed Report
-        document.getElementById('opt-1').addEventListener("click",function(){
-            document.getElementById('opt-2').classList.remove('select');
-            document.getElementById('opt-1').classList.add('select');
-            document.getElementById('report-2').classList.add('hide');
-            document.getElementById('report-1').classList.remove('hide');
-            
-        });
-        document.getElementById('opt-2').addEventListener("click",function(){
-            document.getElementById('opt-1').classList.remove('select');
-            document.getElementById('opt-2').classList.add('select');
-            document.getElementById('report-1').classList.add('hide');
-            document.getElementById('report-2').classList.remove('hide');
-            
-        });
-
-
-        //Detailed Report Students
         
-
-
     </script>
 {% endblock %}

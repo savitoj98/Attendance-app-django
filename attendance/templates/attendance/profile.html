@@ -18,7 +18,7 @@
         <h4>{{ teacher.teacher_class }} - {{ teacher.teacher_section }}</h4>
         <p></p>
 
-        <h3>Students under {{ teacher.teacher_name }}:</h3>
+        <h3>List of Students:</h3>
         <ol>
             {% for student in students %}
 
@@ -26,8 +26,11 @@
 
             {% endfor %}
         </ol>
-        <a href="{% url 'attendance:profile_update' pk=teacher.id %}" class="btn btn-primary">Update Your Profile</a>
         <a href="{% url 'attendance:student_create' pk=teacher.id %}" class="btn btn-success">Add Students</a>
         <a href="{% url 'attendance:mark_attendance' pk=teacher.id %}" class="btn btn-primary">Take Attendance</a>
+        <p></p> 
+        <a href="{% url 'attendance:profile_update' pk=teacher.id %}" class="btn btn-primary">Update Your Profile</a>   
+        <p></p>
+        
     </div>
 {% endblock %}
