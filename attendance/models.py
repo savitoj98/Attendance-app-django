@@ -6,7 +6,8 @@ from django.core.urlresolvers import reverse
 class_choices = (
     ('Pre-Nursery','Pre-Nursery'),
     ('Nursery', 'Nursery'),
-    ('Kindergarten', 'Kindergarten'),
+    ('LKG', 'LKG'),
+    ('UKG', 'UKG'),
     ('I','I'),
     ('II','II'),
     ('III','III'),

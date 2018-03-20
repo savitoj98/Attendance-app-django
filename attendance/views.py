@@ -144,6 +144,21 @@ class SchoolDetailView(LoginRequiredMixin, DetailView):
         return context
 
 @login_required
+def attendance_report(request, pk):
+    school = School.objects.filter(pk=pk)
+    if not request.user.is_authenticated():
+        return redirect('attendance:login_user')
+    elif school[0].principal == request.user:
+        attend = Attendance.objects.filter(date=datetime.today())
+        teachers = Teacher.objects.filter(teacher_school=school)
+        attendance = attend.filter(teacher=teachers)
+        date = datetime.today().date().strftime('%d-%m-%Y')
+        return render(request,'attendance/principal_report.html',{'attendance':attendance, 'date':date})
+    else:
+        return redirect('attendance:school_detail', pk=pk)
+
+
+@login_required
 def create_student(request, pk):
     teacher = get_object_or_404(Teacher, pk=pk)
     if not request.user.is_authenticated():
@@ -172,8 +187,6 @@ def mark_attendance(request,pk):
     students = Student.objects.filter(student_teacher=teacher)
     count = students.count()
     attendance_formset = formset_factory(AttendanceForm, extra=count)
-
-
 
     if not request.user.is_authenticated():
         return redirect('attendance:login_user')

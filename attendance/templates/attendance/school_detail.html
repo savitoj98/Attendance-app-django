@@ -3,6 +3,10 @@
 
 {% block body %}
     <div class="container">
+
+{#        <h3>Get Attendance report - </h3>#}
+        <a href="{% url 'attendance:attendance_report' pk=school.id %}" class="btn btn-success">Daily Report</a>
+
         <h1>List of Teachers:</h1>
         <ol>
             {% for teacher in teachers %}

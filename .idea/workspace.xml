@@ -4,12 +4,10 @@
     <list default="true" id="3d5f22c1-b573-4159-954b-6e620655b471" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loop_attendance/db.sqlite3" afterPath="$PROJECT_DIR$/loop_attendance/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/admin.py" afterPath="$PROJECT_DIR$/attendance/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/forms.py" afterPath="$PROJECT_DIR$/attendance/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/models.py" afterPath="$PROJECT_DIR$/attendance/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html" afterPath="$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/templates/attendance/school_detail.html" afterPath="$PROJECT_DIR$/attendance/templates/attendance/school_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/urls.py" afterPath="$PROJECT_DIR$/attendance/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attendance/views.py" afterPath="$PROJECT_DIR$/attendance/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loop_attendance/settings/base.py" afterPath="$PROJECT_DIR$/loop_attendance/settings/base.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loop_attendance/settings/local.py" afterPath="$PROJECT_DIR$/loop_attendance/settings/local.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loop_attendance/settings/production.py" afterPath="$PROJECT_DIR$/loop_attendance/settings/production.py" />
     </list>
@@ -24,11 +22,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/attendance/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="2465">
+              <caret line="154" column="51" lean-forward="false" selection-start-line="154" selection-start-column="51" selection-end-line="154" selection-end-column="51" />
               <folding>
                 <element signature="e#0#78#0" expanded="true" />
               </folding>
@@ -36,21 +34,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attendance_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html">
+      <file leaf-file-name="principal_report.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/principal_report.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/attendance/forms.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/attendance/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="-442">
+              <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="production.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loop_attendance/settings/production.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="79" column="4" lean-forward="true" selection-start-line="79" selection-start-column="4" selection-end-line="86" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="local.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/loop_attendance/settings/local.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="school_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/school_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/attendance/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="19" column="99" lean-forward="false" selection-start-line="19" selection-start-column="99" selection-end-line="19" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -84,19 +122,20 @@
         <option value="$PROJECT_DIR$/attendance/templates/attendance/profile_form.html" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/register.html" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/login.html" />
-        <option value="$PROJECT_DIR$/attendance/templates/attendance/school_detail.html" />
-        <option value="$PROJECT_DIR$/attendance/urls.py" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/profile.html" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/base.html" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/student_detail.html" />
         <option value="$PROJECT_DIR$/loop_attendance/settings/base.py" />
-        <option value="$PROJECT_DIR$/loop_attendance/settings/local.py" />
-        <option value="$PROJECT_DIR$/loop_attendance/settings/production.py" />
-        <option value="$PROJECT_DIR$/attendance/models.py" />
         <option value="$PROJECT_DIR$/attendance/admin.py" />
         <option value="$PROJECT_DIR$/attendance/forms.py" />
         <option value="$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html" />
+        <option value="$PROJECT_DIR$/attendance/urls.py" />
+        <option value="$PROJECT_DIR$/attendance/templates/attendance/school_detail.html" />
+        <option value="$PROJECT_DIR$/attendance/templates/attendance/principal_report.html" />
         <option value="$PROJECT_DIR$/attendance/views.py" />
+        <option value="$PROJECT_DIR$/attendance/models.py" />
+        <option value="$PROJECT_DIR$/loop_attendance/settings/production.py" />
+        <option value="$PROJECT_DIR$/loop_attendance/settings/local.py" />
       </list>
     </option>
   </component>
@@ -449,20 +488,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="249" y="12" width="826" height="711" extended-state="1" />
-    <editor active="true" />
+    <frame x="249" y="12" width="826" height="711" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26762402" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27415144" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24221453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23529412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29584774" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29584774" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -490,13 +528,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -732,20 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/school_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
@@ -771,13 +788,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="101" lean-forward="false" selection-start-line="14" selection-start-column="101" selection-end-line="14" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loop_attendance/settings/local.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="127" column="33" lean-forward="false" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -785,13 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="126" column="33" lean-forward="false" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loop_attendance/settings/production.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -816,36 +820,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance/models.py">
+    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attendance/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attendance/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="99" lean-forward="false" selection-start-line="19" selection-start-column="99" selection-end-line="19" selection-end-column="99" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/attendance_form.html">
+    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/school_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        <state relative-caret-position="272">
+          <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/attendance/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="2465">
+          <caret line="154" column="51" lean-forward="false" selection-start-line="154" selection-start-column="51" selection-end-line="154" selection-end-column="51" />
           <folding>
             <element signature="e#0#78#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance/forms.py">
+    <entry file="file://$PROJECT_DIR$/attendance/templates/attendance/principal_report.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attendance/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-442">
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loop_attendance/settings/production.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="79" column="4" lean-forward="true" selection-start-line="79" selection-start-column="4" selection-end-line="86" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loop_attendance/settings/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
           <folding />
         </state>
       </provider>
